@@ -48,6 +48,9 @@ This application allows a manager to input information about their team such as 
             a) all test.js files to check application files
         E: app.js 
 
+# HTML
+    I did not focus on the look of this web page due to really focusing on how this can be done simple and easy on the back end. Enjoy the cheesy look of small pieces of paper on a cork board!
+
 # required modules
     Inquirer
     Jest
