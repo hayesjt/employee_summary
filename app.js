@@ -6,7 +6,7 @@ const fs = require("fs");
 console.log("Let's Build your employee summary")
 
 // ENTIRE FUNCTION THAT RUNS THE APPLICATION 
-function runAPP(){
+function runAPP() {
     // PROMPTS THE MANAGER TO FILL OUT ALL INFORMATION
     return inquirer.prompt([
         {
@@ -29,9 +29,44 @@ function runAPP(){
             name: "office",
             message: "what is your office number?"
         }
-    ]).then(function (answers){
+    ]).then(function (answers) {
         // CONFIRM ANSWERS HAS COME INTO THIS FUNCTION 
-        console.log(answers);
+        // console.log(answers);
         // PROMPTING MANAGER TO FILL OUT EMPLOYEE INFORMATION BEFORE WRITING A FILE
+        getTeam();
+        // START WRITING HTML PAGE WITH MANAGER INFORMATION
+        fs.writeFile(".main.html", ``)
     })
 }
+
+function getTeam() {
+    return inquirer.prompt([
+        {
+            type: "list",
+            name: "team",
+            message: "What type of team member are you adding?",
+            choices: [
+                "Engineer",
+                "Intern",
+                "I do not have anymore employees to add"
+            ]
+        }
+    ]).then(function (answer) {
+        switch (answer.team) {
+            case "Engineer": Engineer();
+                break;
+            case "Intern": Intern();
+                break;
+            default:
+                console.log(" ________ TEAM IS COMPLETE - OPEN EMPLOYEE FILE ________")
+                // APPENDING TEAM INFORMATION TO MAIN.HTML
+                fs.appendFile("./main.html", "<body><html>", (err) => {
+                    if (err)
+                        throw err;
+                })
+        }
+    })
+}
+
+// CALLING APP TO RUN
+runAPP();
